@@ -1,11 +1,14 @@
-﻿namespace Product.Core.Entities
+﻿namespace Product.Application.Responses
 {
-    public class Products : BaseEntity
+    public class ProductResponse
     {
+        [BsonId]
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string Id { get; set; }
         [BsonElement("Name")]
         public string Name { get; set; }
+        public string Summary { get; set; }
         public string Description { get; set; }
-        public string Summary { get; set; }    
         public string ImageFile { get; set; }
         public ProductAuthor Author { get; set; }
         public ProductType Types { get; set; }

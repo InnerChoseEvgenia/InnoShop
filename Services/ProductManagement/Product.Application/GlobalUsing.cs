@@ -1,0 +1,11 @@
+﻿global using MongoDB.Bson.Serialization.Attributes;
+global using Product.Core.Entities;
+global using MediatR;
+global using Product.Application.Responses;
+global using MongoDB.Bson;
+global using AutoMapper;
+global using Product.Application.Commands;
+global using Product.Core.Specs;
+global using Product.Application.Mappers;
+global using Product.Core.Repositories;
+global using Product.Application.Queries;

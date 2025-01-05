@@ -1,0 +1,26 @@
+services:
+  productdb:
+    container_name: productdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  product.api:
+    container_name: product.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=mongodb://productdb:27017"
+      - "DatabaseSettings__DatabaseName=ProductDb"
+      - "DatabaseSettings__CollectionName=Product"
+      - "DatabaseSettings__AuthorsCollection=Authors"
+      - "DatabaseSettings__TypesCollection=Types" 
+      # - "ElasticConfiguration__Uri=http://elasticsearch:9200" 
+    depends_on:
+      - productdb
+    ports:
+      - "8000:80"
+    
+volumes:
+  mongo_data:

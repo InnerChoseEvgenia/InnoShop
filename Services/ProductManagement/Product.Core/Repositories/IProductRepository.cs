@@ -3,7 +3,7 @@
     public interface IProductRepository
     {
         Task<Pagination<Products>> GetProducts(CatalogSpecParams catalogSpecParams);
-        Task<Products> GetProduct(string id);
+        Task<Products> GetProductById(string id);
         Task<IEnumerable<Products>> GetProductsByName(string name);
         Task<IEnumerable<Products>> GetProductsByAuthor(string authorName);
         Task<Products> CreateProduct(Products product);

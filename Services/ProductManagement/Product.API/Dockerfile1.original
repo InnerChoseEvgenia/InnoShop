@@ -12,13 +12,13 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Services/ProductManagement/Product.API/Product.API.csproj", "Services/ProductManagement/Product.API/"]
-COPY ["Services/ProductManagement/Product.Application/Product.Application.csproj", "Services/ProductManagement/Product.Application/"]
-COPY ["Services/ProductManagement/Product.Core/Product.Core.csproj", "Services/ProductManagement/Product.Core/"]
-COPY ["Services/ProductManagement/Product.Infrastructure/Product.Infrastructure.csproj", "Services/ProductManagement/Product.Infrastructure/"]
-RUN dotnet restore "./Services/ProductManagement/Product.API/Product.API.csproj"
+COPY ["Product.API/Product.API.csproj", "Product.API/"]
+COPY ["Product.Application/Product.Application.csproj", "Product.Application/"]
+COPY ["Product.Core/Product.Core.csproj", "Product.Core/"]
+COPY ["Product.Infrastructure/Product.Infrastructure.csproj", "Product.Infrastructure/"]
+RUN dotnet restore "./Product.API/Product.API.csproj"
 COPY . .
-WORKDIR "/src/Services/ProductManagement/Product.API"
+WORKDIR "/src/Product.API"
 RUN dotnet build "./Product.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Этот этап используется для публикации проекта службы, который будет скопирован на последний этап
