@@ -8,8 +8,8 @@
             string path = Path.Combine("Data", "SeedData", "products.json");
             if (!checkProducts)
             {
-                //var productsData = File.ReadAllText(path);
-                var productsData = File.ReadAllText("../Product.Infrastructure/Data/SeedData/products.json");
+                var productsData = File.ReadAllText(path);
+                //var productsData = File.ReadAllText("../Product.Infrastructure/Data/SeedData/products.json");
                 var products = JsonSerializer.Deserialize<List<Products>>(productsData);
                 if (products != null)
                 {

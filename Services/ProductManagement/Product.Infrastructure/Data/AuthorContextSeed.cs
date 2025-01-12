@@ -8,8 +8,8 @@
             string path = Path.Combine("Data", "SeedData", "author.json");
             if (!checkAuthor)
             {
-                //var authorData = File.ReadAllText(path);
-                var authorData = File.ReadAllText("../Product.Infrastructure/Data/SeedData/author.json");
+                var authorData = File.ReadAllText(path);
+                //var authorData = File.ReadAllText("../Product.Infrastructure/Data/SeedData/author.json");
                 var authors = JsonSerializer.Deserialize<List<ProductAuthor>>(authorData);
                 if (authors != null)
                 {

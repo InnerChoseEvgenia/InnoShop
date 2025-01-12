@@ -42,6 +42,7 @@ namespace Product.API.Controllers
             return Ok(result);
         }
 
+        
         [HttpGet]
         [Route("GetAllProducts")]
         [ProducesResponseType(typeof(Pagination<ProductResponse>), (int)HttpStatusCode.OK)]
