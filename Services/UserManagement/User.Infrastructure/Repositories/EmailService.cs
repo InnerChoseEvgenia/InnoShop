@@ -16,7 +16,6 @@ namespace User.Infrastructure.Repositories
 
         public async Task<bool> SendEmailAsync(EmailSendDto emailSend)
         {
-            //
             try
             {
                 var username = _config["SMTP:Username"];
