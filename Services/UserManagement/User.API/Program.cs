@@ -21,6 +21,7 @@ builder.Services.AddDbContext<UserDbContext>(options =>
 });
 
 builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<EmailService>();
 
 
 builder.Services.AddIdentityCore<ApplicationUser>(options =>

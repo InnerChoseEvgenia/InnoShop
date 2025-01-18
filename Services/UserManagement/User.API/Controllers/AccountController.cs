@@ -17,7 +17,7 @@ namespace User.API.Controllers
         private readonly UserRepository _userRepository;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly EmailService _emailService;
+        private readonly EmailService _emailService;
         private readonly UserDbContext _context;
         private readonly IConfiguration _config;
         
@@ -25,14 +25,14 @@ namespace User.API.Controllers
         public AccountController(UserRepository userRepository,
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
-            //EmailService emailService,
+            EmailService emailService,
             UserDbContext context,
             IConfiguration config)
         {
             _userRepository = userRepository;
             _signInManager = signInManager;
             _userManager = userManager;
-            //_emailService = emailService;
+            _emailService = emailService;
             _context = context;
             _config = config;           
         }
@@ -93,27 +93,28 @@ namespace User.API.Controllers
                 LastName = model.LastName.ToLower(),
                 UserName = model.Email.ToLower(),
                 Email = model.Email.ToLower(),
-                EmailConfirmed=true
+                //EmailConfirmed=true
+                
             };
 
             // creates a user inside our AspNetUsers table inside our database
             var result = await _userManager.CreateAsync(userToAdd, model.Password);
             if (!result.Succeeded) return BadRequest(result.Errors);
             //await _userManager.AddToRoleAsync(userToAdd, SD.PlayerRole);
-            return Ok("You can login");
-            //try
-            //{
-            //    if (await SendConfirmEMailAsync(userToAdd))
-            //    {
-            //        return Ok(new JsonResult(new { title = "Account Created", message = "Your account has been created, please confrim your email address" }));
-            //    }
+            //return Ok("You can login");
+            try
+            {
+                if (await SendConfirmEMailAsync(userToAdd))
+                {
+                    return Ok(new JsonResult(new { title = "Account Created", message = "Your account has been created, please confrim your email address" }));
+                }
 
-            //    return BadRequest("Failed to send email. Please contact admin");
-            //}
-            //catch (Exception)
-            //{
-            //    return BadRequest("Failed to send email. Please contact admin");
-            //}
+                return BadRequest("Failed to send email. Please contact admin");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Failed to send email. Please contact admin");
+            }
 
         }
 
@@ -138,22 +139,22 @@ namespace User.API.Controllers
             return await _userManager.Users.AnyAsync(x => x.Email == email.ToLower());
         }
 
-        //private async Task<bool> SendConfirmEMailAsync(User user)
-        //{
-        //    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-        //    token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
-        //    var url = $"{_config["JWT:ClientUrl"]}/{_config["Email:ConfirmEmailPath"]}?token={token}&email={user.Email}";
+        private async Task<bool> SendConfirmEMailAsync(ApplicationUser user)
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+            var url = $"{_config["JWT:ClientUrl"]}/{_config["Email:ConfirmEmailPath"]}?token={token}&email={user.Email}";
 
-        //    var body = $"<p>Hello: {user.FirstName} {user.LastName}</p>" +
-        //        "<p>Please confirm your email address by clicking on the following link.</p>" +
-        //        $"<p><a href=\"{url}\">Click here</a></p>" +
-        //        "<p>Thank you,</p>" +
-        //        $"<br>{_config["Email:ApplicationName"]}";
+            var body = $"<p>Hello: {user.FirstName} {user.LastName}</p>" +
+                "<p>Please confirm your email address by clicking on the following link.</p>" +
+                $"<p><a href=\"{url}\">Click here</a></p>" +
+                "<p>Thank you,</p>" +
+                $"<br>{_config["Email:ApplicationName"]}";
 
-        //    var emailSend = new EmailSendDto(user.Email, "Confirm your email", body);
+            var emailSend = new EmailSendDto(user.Email, "Confirm your email", body);
 
-        //    return await _emailService.SendEmailAsync(emailSend);
-        //}
+            return await _emailService.SendEmailAsync(emailSend);
+        }
         #endregion
     }
 }
