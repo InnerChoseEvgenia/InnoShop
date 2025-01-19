@@ -43,39 +43,13 @@ namespace User.API.Controllers
             var user = await _userManager.FindByNameAsync(model.UserName);
             if (user == null) return Unauthorized("Invalid username or password");
 
+            
             if (user.EmailConfirmed == false) return Unauthorized("Please confirm your email.");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
 
-            if (!result.Succeeded) return Unauthorized("Your account has been locked.");
-            //if (result.IsLockedOut)
-            //{
-            //    return Unauthorized(string.Format("Your account has been locked. You should wait until {0} (UTC time) to be able to login", user.LockoutEnd));
-            //}
-
-            //if (!result.Succeeded)
-            //{
-            //    // User has input an invalid password
-            //    if (!user.UserName.Equals(SD.AdminUserName))
-            //    {
-            //        // Increamenting AccessFailedCount of the AspNetUser by 1
-            //        await _userManager.AccessFailedAsync(user);
-            //    }
-
-            //    if (user.AccessFailedCount >= SD.MaximumLoginAttempts)
-            //    {
-            //        // Lock the user for one day
-            //        await _userManager.SetLockoutEndDateAsync(user, DateTime.UtcNow.AddDays(1));
-            //        return Unauthorized(string.Format("Your account has been locked. You should wait until {0} (UTC time) to be able to login", user.LockoutEnd));
-            //    }
-
-
-            //    return Unauthorized("Invalid username or password");
-            //}
-
-            //await _userManager.ResetAccessFailedCountAsync(user);
-            //await _userManager.SetLockoutEndDateAsync(user, null);
-
+            if (!result.Succeeded) return Unauthorized("Invalid username or password.");
+         
             return CreateApplicationUserDto(user);
         }
 
@@ -100,8 +74,7 @@ namespace User.API.Controllers
             // creates a user inside our AspNetUsers table inside our database
             var result = await _userManager.CreateAsync(userToAdd, model.Password);
             if (!result.Succeeded) return BadRequest(result.Errors);
-            //await _userManager.AddToRoleAsync(userToAdd, SD.PlayerRole);
-            //return Ok("You can login");
+            
             try
             {
                 if (await SendConfirmEMailAsync(userToAdd))
@@ -145,15 +118,86 @@ namespace User.API.Controllers
             }
         }
 
+        [HttpPost("resend-email-confirmation-link/{email}")]
+        public async Task<IActionResult> ResendEMailConfirmationLink(string email)
+        {
+            if (string.IsNullOrEmpty(email)) return BadRequest("Invalid email");
+            var user = await _userManager.FindByEmailAsync(email);
 
+            if (user == null) return Unauthorized("This email address has not been registerd yet");
+            if (user.EmailConfirmed == true) return BadRequest("Your email address was confirmed before. Please login to your account");
+
+            try
+            {
+                if (await SendConfirmEMailAsync(user))
+                {
+                    return Ok(new JsonResult(new { title = "Confirmation link sent", message = "Please confrim your email address" }));
+                }
+
+                return BadRequest("Failed to send email. PLease contact admin");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Failed to send email. PLease contact admin");
+            }
+        }
+
+        [HttpPost("forgot-username-or-password/{email}")]
+        public async Task<IActionResult> ForgotUsernameOrPassword(string email)
+        {
+            if (string.IsNullOrEmpty(email)) return BadRequest("Invalid email");
+
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null) return Unauthorized("This email address has not been registerd yet");
+            if (user.EmailConfirmed == false) return BadRequest("Please confirm your email address first.");
+
+            try
+            {
+                if (await SendForgotUsernameOrPasswordEmail(user))
+                {
+                    return Ok(new JsonResult(new { title = "Forgot username or password email sent", message = "Please check your email" }));
+                }
+
+                return BadRequest("Failed to send email. Please contact admin");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Failed to send email. Please contact admin");
+            }
+        }
+
+        [HttpPut("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null) return Unauthorized("This email address has not been registerd yet");
+            if (user.EmailConfirmed == false) return BadRequest("PLease confirm your email address first");
+
+            try
+            {
+                var decodedTokenBytes = WebEncoders.Base64UrlDecode(model.Token);
+                var decodedToken = Encoding.UTF8.GetString(decodedTokenBytes);
+
+                var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    return Ok(new JsonResult(new { title = "Password reset success", message = "Your password has been reset" }));
+                }
+
+                return BadRequest("Invalid token. Please try again");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Invalid token. Please try again");
+            }
+        }
 
 
         #region Private Helper Methods
         private UserDto CreateApplicationUserDto(ApplicationUser user)
         {
-            //await 
-                //SaveRefreshTokenAsync(user);
-            return new UserDto
+             return new UserDto
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
@@ -179,6 +223,24 @@ namespace User.API.Controllers
                 $"<br>{_config["Email:ApplicationName"]}";
 
             var emailSend = new EmailSendDto(user.Email, "Confirm your email", body);
+
+            return await _emailService.SendEmailAsync(emailSend);
+        }
+
+        private async Task<bool> SendForgotUsernameOrPasswordEmail(ApplicationUser user)
+        {
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+            var url = $"{_config["JWT:ClientUrl"]}/{_config["Email:ResetPasswordPath"]}?token={token}&email={user.Email}";
+
+            var body = $"<p>Hello: {user.FirstName} {user.LastName}</p>" +
+               $"<p>Username: {user.UserName}.</p>" +
+               "<p>In order to reset your password, please click on the following link.</p>" +
+               $"<p><a href=\"{url}\">Click here</a></p>" +
+               "<p>Thank you,</p>" +
+               $"<br>{_config["Email:ApplicationName"]}";
+
+            var emailSend = new EmailSendDto(user.Email, "Forgot username or password", body);
 
             return await _emailService.SendEmailAsync(emailSend);
         }
