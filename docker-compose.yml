@@ -22,3 +22,10 @@ services:
       context: .
       dockerfile: Services/UserManagement/User.API/Dockerfile
 
+
+  yarpapigateway:
+    image: ${DOCKER_REGISTRY-}yarpapigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/YarpApiGateway/Dockerfile
+
