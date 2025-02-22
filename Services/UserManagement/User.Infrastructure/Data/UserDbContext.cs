@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
+using System.Reflection;
 using User.Core.Entities;
 
 namespace User.Infrastructure.Data
@@ -11,6 +13,11 @@ namespace User.Infrastructure.Data
         {
 
         }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -12,7 +12,7 @@ using User.Infrastructure.Data;
 namespace User.Infrastructure.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20250118090150_User")]
+    [Migration("20250217155845_User")]
     partial class User
     {
         /// <inheritdoc />

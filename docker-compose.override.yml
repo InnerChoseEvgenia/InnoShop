@@ -1,3 +1,8 @@
+version: '3.8'
+
+networks:
+  usernet:
+
 services:
   productdb:
     container_name: productdb
@@ -7,27 +12,34 @@ services:
     volumes:
       - mongo_data:/data/db
 
+
+  
+
   userdb:
     container_name: userdb
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=SwN12345678
+      - MSSQL_SA_PASSWORD=SwN12345678*
     restart: always
     ports:
-      - "1433:1433" 
+      - "6000:1433"
     volumes:
-      - mssql_data:/data/db
+      - userdb-data:/var/opt/mssql
+    networks:
+      - usernet  
 
   user.api:
     container_name: user.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
-      - ConnectionStrings__Database=Server=userdb;Database=UserAPIIdentity;User Id=sa;Password=SwN12345678;Encrypt=False;TrustServerCertificate=True
+      # - "ConnectionStrings__Database=Server=userdb;Database=UserAAPIIdentity;User Id=sa;Password=SwN12345678*;TrustServerCertificate=True"
     depends_on:
-      - userdb      
+      - userdb
     ports:
       - "6001:8080"
+    # networks:
+    #   - usernet
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -62,8 +74,13 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+
+
+
 volumes:
   mongo_data:
-  mssql_data:
+  # mssql_data:
+  userdb-data:
 
 

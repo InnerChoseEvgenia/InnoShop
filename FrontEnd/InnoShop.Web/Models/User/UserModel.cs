@@ -36,11 +36,9 @@
     public record GetAuthorProductListResponse(AuthorProductList List);
 
     //public record GetAuthorProductListRequest(AuthorProductList List);
-    
     public record CreateAuthorProductItemRequest(string UserName);
     public record CreateAuthorProductItemResponse(AuthorProductItem Item);
     public record UpdateAuthorProductItemRequest(string ProductName);
     public record UpdateAuthorProductItemResponse(AuthorProductItem Item);
-
     public record DeleteAuthorProductItemResponse(bool IsSuccess);
 }

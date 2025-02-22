@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
 
   productdb:
@@ -5,6 +7,7 @@ services:
 
   userdb:
     image: mcr.microsoft.com/mssql/server
+    # image: mcr.microsoft.com/mssql/server:2022-latest
 
   # distributedcache:
   #   image: redis
@@ -21,7 +24,8 @@ services:
     build:
       context: .
       dockerfile: Services/UserManagement/User.API/Dockerfile
-
+    depends_on:
+      - userdb      
 
   yarpapigateway:
     image: ${DOCKER_REGISTRY-}yarpapigateway
