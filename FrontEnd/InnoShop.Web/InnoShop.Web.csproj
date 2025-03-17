@@ -11,7 +11,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="MongoDB.Bson" Version="3.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
+	<PackageReference Include="MediatR" Version="12.4.1" /> 
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\ProductManagement\Product.Application\Product.Application.csproj" />
   </ItemGroup>
 
 </Project>

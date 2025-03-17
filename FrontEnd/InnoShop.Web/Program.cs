@@ -1,4 +1,5 @@
 using InnoShop.Web.Services;
+using Newtonsoft.Json;
 using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,11 +12,11 @@ builder.Services.AddRefitClient<IProductService>()
     {
         c.BaseAddress = new Uri(builder.Configuration["ApiSettings:GatewayAddress"]!);
     });
-builder.Services.AddRefitClient<IUserService>()
-    .ConfigureHttpClient(c =>
-    {
-        c.BaseAddress = new Uri(builder.Configuration["ApiSettings:GatewayAddress"]!);
-    });
+//builder.Services.AddRefitClient<IUserService>()
+//    .ConfigureHttpClient(c =>
+//    {
+//        c.BaseAddress = new Uri(builder.Configuration["ApiSettings:GatewayAddress"]!);
+//    });
 
 var app = builder.Build();
 
@@ -27,7 +28,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

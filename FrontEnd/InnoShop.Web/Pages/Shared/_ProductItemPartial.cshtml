@@ -1,4 +1,5 @@
-﻿@model Models.Product.ProductModel
+﻿@* @using InnoShop.Web.Models.Product *@
+@model Models.Product.Products
 
 <div class="card">
     <a asp-page="ProductDetail" asp-route-productId="@Model.Id"><img asp-append-version="true" class="card-img-top" src="~/images/product/@Model.ImageFile" alt=""></a>
@@ -11,8 +12,8 @@
             </div>
             <div class="col">
 
-                @*<a asp-page="Cart" asp-route-productId="@Model.Id" class="btn btn-success btn-block">Add to Cart</a>*@
-
+@*                 <a asp-page="Cart" asp-route-productId="@Model.Id" class="btn btn-success btn-block">Add to Cart</a>
+ *@
                 <form asp-page-handler="AddToCart" method="post" name="addToCartForm" id="add_cart_form">
                     <a href="javascript:;" onclick="parentNode.submit();" class="btn btn-success btn-block">Add to Cart</a>
                     <input type="hidden" asp-for="@Model.Id" name="productId" />
