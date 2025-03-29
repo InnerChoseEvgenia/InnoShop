@@ -1,0 +1,191 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:6004"
+  },
+  "Routes": [
+    //Catalog API
+    {
+      "DownstreamPathTemplate": "/api/v1/Product",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Product",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "FileCacheOptions": { "TtlSeconds": 30 }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Product/GetProductById/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Product/GetProductById/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Product/GetAllProducts",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Product/GetAllProducts",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Product/GetAllAuthor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Product/GetAllAuthor",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Product/GetAllTypes",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Product/GetAllTypes",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Product/GetProductsByAuthorName/{author}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Product/GetProductsByAuthorName/{author}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //User API
+    {
+      "DownstreamPathTemplate": "/api/Account/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Account/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Account/resend-email-confirmation-link/{email}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/resend-email-confirmation-link/{email}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Account/forgot-username-or-password/{email}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/forgot-username-or-password/{email}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Account/confirm-email",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/confirm-email",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Account/reset-password",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/reset-password",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    //ProductList 
+    {
+      "DownstreamPathTemplate": "/api/ProductList/GetProductList/{userName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductList/GetProductList/{userName}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ProductList/DeleteProductList/{userName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductList/DeleteProductList/{userName}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ProductList/CreateProductList",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "6001"
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductList/CreateProductList",
+      "UpstreamHttpMethod": [ "POST" ]
+    }
+  ]
+}

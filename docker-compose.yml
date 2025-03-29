@@ -27,9 +27,16 @@ services:
     depends_on:
       - userdb      
 
-  yarpapigateway:
-    image: ${DOCKER_REGISTRY-}yarpapigateway
+  # yarpapigateway:
+  #   image: ${DOCKER_REGISTRY-}yarpapigateway
+  #   build:
+  #     context: .
+  #     dockerfile: ApiGateway/YarpApiGateway/Dockerfile
+
+    
+  ocelot.gateway:
+    image: ${DOCKER_REGISTRY-}ocelotgateway
     build:
       context: .
-      dockerfile: ApiGateway/YarpApiGateway/Dockerfile
+      dockerfile: ApiGateway/Ocelot.Gateway/Dockerfile
 
