@@ -60,9 +60,7 @@ services:
     ports:
       - "6002:8080"
 
-
-    
-  yarpapigateway:
+  ocelot.gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -70,17 +68,29 @@ services:
       - product.api
       - user.api
     ports:
-      - "6003:8080"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - "6004:8080" 
 
 
+    
+  # yarpapigateway:
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #     - ASPNETCORE_HTTP_PORTS=8080
+  #   depends_on:
+  #     - product.api
+  #     - user.api
+  #   ports:
+  #     - "6003:8080"
+  #   volumes:
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
 
 volumes:
   mongo_data:
   # mssql_data:
   userdb-data:
+
+
 
 
