@@ -4,9 +4,11 @@ using System.Net;
 using User.Application.Commands;
 using User.Application.Queries;
 using User.Application.Responses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace User.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductListController : ControllerBase

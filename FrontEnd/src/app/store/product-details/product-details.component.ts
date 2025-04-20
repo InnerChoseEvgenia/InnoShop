@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../../shared/models/product';
+import { IProduct } from '../../shared/models/product/product';
 import { StoreService } from '../store.service';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';

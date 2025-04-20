@@ -6,13 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
-import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+//import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { SharedModule } from './shared/shared.module';
+import { ProductListComponent } from './product-list/product-list.component';
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -20,11 +25,13 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     CoreModule,
-    HomeModule
+    HomeModule,
+    SharedModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+    //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

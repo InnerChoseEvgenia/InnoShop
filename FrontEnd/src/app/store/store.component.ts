@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { StoreService } from './store.service';
-import { IProduct } from '../shared/models/product';
-import { IAuthor } from '../shared/models/author';
-import { IType } from '../shared/models/type';
-import { StoreParams } from '../shared/models/storeParams';
+import { IProduct } from '../shared/models/product/product';
+import { IAuthor } from '../shared/models/product/author';
+import { IType } from '../shared/models/product/type';
+import { StoreParams } from '../shared/models/product/storeParams';
 
 @Component({
   selector: 'app-store',
