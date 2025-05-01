@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using User.API.ExceptionHandler;
 using User.Core.Entities;
 using User.Infrastructure.Data;
 using User.Infrastructure.Repositories;
@@ -17,6 +18,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 
 
 builder.Services.AddDbContext<UserDbContext>(options =>
@@ -94,11 +97,13 @@ app.UseCors(opt =>
     opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins(builder.Configuration["JWT:ClientUrl"]);
 });
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+
+app.UseMiddleware<GlobalExceptionHandler>();
 
 // adding UseAuthentication into our pipeline and this should come before UseAuthorization
 // Authentication verifies the identity of a user or service, and authorization determines their access rights.

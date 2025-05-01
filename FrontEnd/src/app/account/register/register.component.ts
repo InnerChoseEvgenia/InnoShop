@@ -54,12 +54,12 @@ export class RegisterComponent implements OnInit{
           this.router.navigateByUrl('/account/login');
         },
         error: error => {
-          if (error.error.errors) {
-            this.errorMessages = error.error.errors;
-          }
-          else {
-            this.errorMessages.push(error.error);
-          }
+         // if (error.error.errors) {
+           // this.errorMessages = error.error.errors;
+        //  }
+         // else {
+           this.errorMessages.push(error.error);
+          //}
           }
       })
     }

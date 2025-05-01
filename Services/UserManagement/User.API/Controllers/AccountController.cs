@@ -8,6 +8,7 @@ using User.Core.Entities;
 using User.Infrastructure.Data;
 using User.Infrastructure.Repositories;
 
+
 namespace User.API.Controllers
 {
     [Route("api/[controller]")]
@@ -37,19 +38,26 @@ namespace User.API.Controllers
             _config = config;           
         }
 
+
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);
-            if (user == null) return Unauthorized("Invalid username or password");
 
-            
+            if (user == null)
+                return Unauthorized("Invalid username or password");
+            //throw  new UnauthorizedAccessException();
+
+
+
             if (user.EmailConfirmed == false) return Unauthorized("Please confirm your email.");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
 
-            if (!result.Succeeded) return Unauthorized("Invalid username or password.");
-         
+            if (!result.Succeeded)
+                //throw new UnauthorizedAccessException();
+            return Unauthorized("Invalid username or password.");
+
             return CreateApplicationUserDto(user);
         }
 
@@ -82,6 +90,7 @@ namespace User.API.Controllers
                     return Ok(new JsonResult(new { title = "Account Created", message = "Your account has been created, please confrim your email address" }));
                 }
 
+                
                 return BadRequest("Failed to send email. Please contact admin");
             }
             catch (Exception)

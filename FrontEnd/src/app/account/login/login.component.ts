@@ -64,13 +64,13 @@ export class LoginComponent implements OnInit {
           } else{
             this.router.navigateByUrl('/');
           }         
-        },
-        error: error => {
-          if (error.error.errors) {
-            this.errorMessages = error.error.errors;
-          } else {
+        }
+        ,error: error => {
+          //if (error.error.errors) {
+           // this.errorMessages = error.error.errors;
+          //} else {
             this.errorMessages.push(error.error);
-          }
+         // }
         }
       })
     }
