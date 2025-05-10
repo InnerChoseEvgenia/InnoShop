@@ -2,15 +2,18 @@
 
 namespace Product.Application.Handlers
 {
-    public class CreateProductCommandHandler (IProductRepository _productRepository) 
+    public class CreateProductCommandHandler 
+        //(IProductRepository _productRepository) 
         : IRequestHandler<CreateProductCommand, ProductResponse>
     {
-        //private readonly IProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly CreateProductCommandValidator _validator;
 
-        //public CreateProductCommandHandler(IProductRepository productRepository)
-        //{
-        //    _productRepository = productRepository;
-        //}
+        public CreateProductCommandHandler(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+            _validator = new CreateProductCommandValidator();
+        }
         public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
         {
             public CreateProductCommandValidator()
@@ -26,6 +29,11 @@ namespace Product.Application.Handlers
         }
         public async Task<ProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors);
+            }
             var productEntity = ProductMapper.Mapper.Map<Products>(request);
             if (productEntity is null)
             {
