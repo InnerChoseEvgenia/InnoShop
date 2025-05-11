@@ -3,7 +3,7 @@
     "Id": "602d2149e773f2a3990b47f5",
     "Name": ".NET 8 Microservices: DDD, CQRS, Vertical/Clean Architecture",
     "Description": ".NET 8 Microservices: DDD, CQRS, Vertical/Clean Architecture",
-    "Price": 3500,
+    "Price": 35,
     "ImageFile": "images/products/adidas_shoe-1.png",
     "Summary": ".NET 8 Microservices: DDD, CQRS, Vertical/Clean Architecture",
     "Types": {
@@ -21,7 +21,7 @@
     "Id": "602d2149e773f2a3990b47f6",
     "Name": "Securing .Net Microservices",
     "Description": "Securing .Net Microservices with IdentityServer4 using OAuth2, OpenID Connect and Ocelot API Gateway",
-    "Price": 3375,
+    "Price": 33,
     "ImageFile": "images/products/adidas_shoe-2.png",
     "Summary": "Securing .Net Microservices",
     "Types": {
@@ -39,7 +39,7 @@
     "Id": "602d2149e773f2a3990b47f7",
     "Name": "Design Architecture with Patterns & Principles",
     "Description": "Design Architecture with Patterns & Principles",
-    "Price": 3375,
+    "Price": 33,
     "ImageFile": "images/products/adidas_shoe-3.png",
     "Summary": "Design Architecture with Patterns & Principles",
     "Types": {
@@ -57,7 +57,7 @@
     "Id": "602d2149e773f2a3990b47f8",
     "Name": "Ultimate C# Masterclass for 2025",
     "Description": " Ultimate C# Masterclass for 2025",
-    "Price": 4249,
+    "Price": 42,
     "ImageFile": "images/products/asics_shoe-1.png",
     "Summary": "Ultimate C# Masterclass for 2025",
     "Types": {
@@ -75,7 +75,7 @@
     "Id": "602d2149e773f2a3990b47f9",
     "Name": "LINQ Tutorial",
     "Description": "LINQ Tutorial",
-    "Price": 3499,
+    "Price": 34,
     "ImageFile": "images/products/asics_shoe-2.png",
     "Summary": "LINQ Tutorial",
     "Types": {
@@ -93,7 +93,7 @@
     "Id": "602d2149e773f2a3990b47fa",
     "Name": "C#/.NET - 50 Essential Interview Questions",
     "Description": "C#/.NET - 50 Essential Interview Questions",
-    "Price": 3499,
+    "Price": 34,
     "ImageFile": "images/products/asics_shoe-3.png",
     "Summary": "C#/.NET - 50 Essential Interview Questions",
     "Types": {
@@ -111,7 +111,7 @@
     "Id": "702d2149e773f2a3990b47fa",
     "Name": "Docker for .NET Developer - Getting Started",
     "Description": "Docker for .NET Developer - Getting Started",
-    "Price": 2392,
+    "Price": 23,
     "ImageFile": "images/products/victor_shoe-1.png",
     "Summary": "Docker for .NET Developer - Getting Started",
     "Types": {
@@ -129,7 +129,7 @@
     "Id": "802d2149e773f2a3990b47fa",
     "Name": "Clean Architecture in .NET Core MVC[.NET 8]",
     "Description": "Clean Architecture in .NET Core MVC[.NET 8]",
-    "Price": 3000,
+    "Price": 30,
     "ImageFile": "images/products/victor_shoe-2.png",
     "Summary": "Clean Architecture in .NET Core MVC[.NET 8]",
     "Types": {
@@ -147,7 +147,7 @@
     "Id": "902d2149e773f2a3990b47fa",
     "Name": ".NET Core MVC - The Complete Guide 2024",
     "Description": ".NET Core MVC - The Complete Guide 2024",
-    "Price": 2590,
+    "Price": 25,
     "ImageFile": "images/products/yonex_shoe-1.png",
     "Summary": ".NET Core MVC - The Complete Guide 2024",
     "Types": {
@@ -165,7 +165,7 @@
     "Id": "912d2149e773f2a3990b47fa",
     "Name": "SDET C#: Test Automation From Scratch - Detailed Guide",
     "Description": "SDET C#: Test Automation From Scratch - Detailed Guide",
-    "Price": 3500,
+    "Price": 35,
     "ImageFile": "images/products/yonex_shoe-2.png",
     "Summary": "SDET C#: Test Automation From Scratch - Detailed Guide",
     "Types": {
@@ -183,7 +183,7 @@
     "Id": "922d2149e773f2a3990b47fa",
     "Name": "Test Driven Development in ASP.NET Core - The Handbook",
     "Description": "Test Driven Development in ASP.NET Core - The Handbook",
-    "Price": 3700,
+    "Price": 37,
     "ImageFile": "images/products/yonex_shoe-3.png",
     "Summary": "Test Driven Development in ASP.NET Core - The Handbook",
     "Types": {
@@ -201,7 +201,7 @@
     "Id": "932d2149e773f2a3990b47fa",
     "Name": "ASP.NET Core - SOLID and Clean Architecture",
     "Description": "ASP.NET Core - SOLID and Clean Architecture",
-    "Price": 4999,
+    "Price": 49,
     "ImageFile": "images/products/puma_shoe-1.png",
     "Summary": "ASP.NET Core - SOLID and Clean Architecture",
     "Types": {
@@ -219,7 +219,7 @@
     "Id": "942d2149e773f2a3990b47fa",
     "Name": "DemoAutoSendEmailWithHangfire ",
     "Description": "DemoAutoSendEmailWithHangfire ",
-    "Price": 5200,
+    "Price": 52,
     "ImageFile": "images/products/puma_shoe-2.png",
     "Summary": "DemoAutoSendEmailWithHangfire ",
     "Types": {
@@ -237,7 +237,7 @@
     "Id": "952d2149e773f2a3990b47fa",
     "Name": "DemoContainerizedAPI",
     "Description": "DemoContainerizedAPI",
-    "Price": 5700,
+    "Price": 57,
     "ImageFile": "images/products/puma_shoe-3.png",
     "Summary": "DemoContainerizedAPI",
     "Types": {
@@ -255,7 +255,7 @@
     "Id": "962d2149e773f2a3990b47fa",
     "Name": "DemoWebAPIWithSqlServerInDocker",
     "Description": "DemoWebAPIWithSqlServerInDocker",
-    "Price": 4125,
+    "Price": 41,
     "ImageFile": "images/products/babolat_shoe-1.png",
     "Summary": "DemoWebAPIWithSqlServerInDocker",
     "Types": {
@@ -273,7 +273,7 @@
     "Id": "972d2149e773f2a3990b47fa",
     "Name": "clean-arch-skelton-webapi-cheaphotel-demo ",
     "Description": "clean-arch-skelton-webapi-cheaphotel-demo ",
-    "Price": 5249,
+    "Price": 52,
     "ImageFile": "images/products/babolat_shoe-2.png",
     "Summary": "clean-arch-skelton-webapi-cheaphotel-demo ",
     "Types": {
@@ -291,7 +291,7 @@
     "Id": "982d2149e773f2a3990b47fa",
     "Name": "webapi-single-containerdemo ",
     "Description": "webapi-single-containerdemo ",
-    "Price": 2999,
+    "Price": 29,
     "ImageFile": "images/products/babolat_shoe-3.png",
     "Summary": "webapi-single-containerdemo ",
     "Types": {
@@ -309,7 +309,7 @@
     "Id": "992d2149e773f2a3990b47fa",
     "Name": "idenitywebapiAuthenctication-logout ",
     "Description": "idenitywebapiAuthenctication-logout ",
-    "Price": 6099,
+    "Price": 60,
     "ImageFile": "images/products/yonex-racket-1.png",
     "Summary": "idenitywebapiAuthenctication-logout ",
     "Types": {
@@ -327,7 +327,7 @@
     "Id": "991d2149e773f2a3990b47fa",
     "Name": "Docker & Kubernetes for .Net and Angular Developers",
     "Description": "Docker & Kubernetes for .Net and Angular Developers",
-    "Price": 6399,
+    "Price": 63,
     "ImageFile": "images/products/yonex-racket-2.png",
     "Summary": "Docker & Kubernetes for .Net and Angular Developers",
     "Types": {
@@ -345,7 +345,7 @@
     "Id": "992d2149e773f2a3990b47fa",
     "Name": "Quickstart Guide to Custom GPT Creation",
     "Description": "Quickstart Guide to Custom GPT Creation",
-    "Price": 13299,
+    "Price": 13,
     "ImageFile": "images/products/yonex-racket-3.png",
     "Summary": "Yonex VCORE Pro 100 A Tennis Racquet (290gm, Strung)",
     "Types": {
@@ -363,7 +363,7 @@
     "Id": "993d2149e773f2a3990b47fa",
     "Name": "Creating .Net Core Microservices using Clean Architecture",
     "Description": "Creating .Net Core Microservices using Clean Architecture",
-    "Price": 6999,
+    "Price": 69,
     "ImageFile": "images/products/babolat-racket-1.png",
     "Summary": "Creating .Net Core Microservices using Clean Architecture",
     "Types": {

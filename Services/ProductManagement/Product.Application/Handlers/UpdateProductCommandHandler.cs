@@ -27,6 +27,7 @@ namespace Product.Application.Handlers
         public async Task<bool> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var productEntity = await _productRepository.UpdateProduct(new Products
+
             {
                 Id = request.Id,
                 Description = request.Description,
@@ -39,7 +40,8 @@ namespace Product.Application.Handlers
                 IsAvailable= request.IsAvailable,
                 CreateAt= request.CreateAt
             });
-            return true;
+            return productEntity;
+            // changed it during the tests - was return true
         }
     }
 }

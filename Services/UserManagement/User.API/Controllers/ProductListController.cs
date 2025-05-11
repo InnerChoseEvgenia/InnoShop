@@ -4,9 +4,11 @@ using System.Net;
 using User.Application.Commands;
 using User.Application.Queries;
 using User.Application.Responses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace User.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductListController : ControllerBase
@@ -23,16 +25,16 @@ namespace User.API.Controllers
         [HttpGet]
         [Route("[action]/{userName}", Name = "GetProductListByUserName")]
         [ProducesResponseType(typeof(AuthorProductListResponse), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<AuthorProductListResponse>> GetBasket(string userName)
+        public async Task<ActionResult<AuthorProductListResponse>> GetProductList(string userName)
         {
             var query = new GetListByUserNameQuery(userName);
             var list = await _mediator.Send(query);
             return Ok(list);
         }
 
-        [HttpPost("ProductList")]
+        [HttpPost("CreateProductList")]
         [ProducesResponseType(typeof(AuthorProductListResponse), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<AuthorProductListResponse>> UpdateBasket([FromBody] CreateAuthorListCommand createAuthorListCommand)
+        public async Task<ActionResult<AuthorProductListResponse>> CreateAuthorList([FromBody] CreateAuthorListCommand createAuthorListCommand)
         {
             var list = await _mediator.Send(createAuthorListCommand);
             return Ok(list);

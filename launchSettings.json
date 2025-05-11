@@ -6,7 +6,9 @@
       "serviceActions": {
         "product.api": "StartDebugging",
         "user.api": "StartDebugging",
-        "yarpapigateway": "StartDebugging"
+        "yarpapigateway": "StartDebugging",
+        "ocelot.apigateway": "StartDebugging",
+        "ocelot.gateway": "StartDebugging"
       }
     }
   }
