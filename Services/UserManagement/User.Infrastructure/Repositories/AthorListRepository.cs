@@ -24,7 +24,7 @@ namespace User.Infrastructure.Repositories
         }
 
 
-        public async Task<AuthorProductList> UpdateProductList(AuthorProductList productList)
+        public async Task<AuthorProductList> CreateProductList(AuthorProductList productList)
         {
             await _redisCache.SetStringAsync(productList.UserName, JsonConvert.SerializeObject(productList));
             return await GetProductList(productList.UserName);

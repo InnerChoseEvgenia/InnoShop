@@ -17,7 +17,7 @@ namespace User.Application.Handlers
         }
         public async Task<AuthorProductListResponse> Handle(CreateAuthorListCommand request, CancellationToken cancellationToken)
         {
-            var authorProductList = await _athorListRepository.UpdateProductList(new AuthorProductList
+            var authorProductList = await _athorListRepository.CreateProductList(new AuthorProductList
             {
                 UserName = request.UserName,
                 Items = request.Items
